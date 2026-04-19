@@ -99,9 +99,9 @@ Niveau Challenger = **élite absolue** → données de très haute qualité pour
 
 ### **Section 10 : Modélisation**
 - **Régression logistique** : Prédiction victoire à partir de 8 features (KDA, Gold/min, Damage/min, CS/min, Vision, etc.)
-  - Accuracy test : ~68–72%
+  - Accuracy test : **82%**
   - Coefficients standardisés : KDA >> Gold/min >> Damage/min >> Vision
-  - Matrice de confusion : FPR et FNR équilibrés
+  - Matrice de confusion : FPR et FNR équilibrés (pas de biais malgré asymétrie équipe vs individuel)
 
 ### **Section 11 : Synthèse et conclusion**
 - **Tableau récapitulatif** : 18 tests statistiques réalisés
@@ -178,9 +178,9 @@ team_100_baron_kills, team_200_baron_kills : barons tués
 | ANOVA unifactorielle | Rôles différents (8 variables) ? | **p<0.001** pour toutes (η²=0.015–0.918) |
 | Pearson | Gold ↔ Dégâts ? | **r=+0.865, p<0.001** |
 | Pearson | CS/min ↔ Gold/min ? | **r=+0.417, p<0.001** |
-| Régression simple | csPerMin → goldPerMin | **R²=0.174** |
-| Régression multiple | 6 features → goldPerMin | **R²≈0.70–0.80** |
-| Logistique | 8 features → victoire | **Accuracy ≈68–72%** |
+| Régression simple | csPerMin → goldPerMin | **R²=0.17** (17% de variance expliquée) |
+| Régression multiple | 6 features → goldPerMin | **R²≈0.70–0.80** (meilleure performance) |
+| Logistique | 8 features → victoire | **Accuracy = 82%** |
 
 ---
 
@@ -197,9 +197,9 @@ team_100_baron_kills, team_200_baron_kills : barons tués
 
 ### Corrélation et régression
 - **Pearson r** : Relation linéaire bivariée (-1 à +1)
-- **Régression linéaire simple** : Modèle univarié
-- **Régression linéaire multiple** : Modèle multidimensionnel (train/test 80/20, standardisation)
-- **Régression logistique** : Classification binaire (train/test 80/20, stratification)
+- **Régression linéaire simple** : Modèle univarié (R²=0.17 → CS/min seul insuffisant)
+- **Régression linéaire multiple** : Modèle multidimensionnel avec 6 features (train/test 80/20, standardisation) → R²≈0.70–0.80
+- **Régression logistique** : Classification binaire victoire/défaite (train/test 80/20, stratification) → Accuracy=82%
 
 ### Taille d'effet
 - **d de Cohen** : (μ1 - μ2) / σ pooled
